@@ -3,6 +3,7 @@
    end in an error.
 */
 const handleError = (message) => {
+    console.log("in handleError");
     document.getElementById('errorMessage').textContent = message;
     document.getElementById('domoMessage').classList.remove('hidden');
 };
@@ -11,6 +12,7 @@ const handleError = (message) => {
    entries in the response JSON object, and will handle them appropriately.
 */
 const sendPost = async(url, data, handler) => {
+    console.log("in sendPost");
     const response = await fetch(url, {
         method: 'POST',
         headers: {

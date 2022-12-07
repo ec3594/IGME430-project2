@@ -6,50 +6,51 @@ let DomoModel = {};
 const setName = (name) => _.escape(name).trim();
 
 const DomoSchema = new mongoose.Schema({
-  name: {
-    type: String,
-    required: true,
-    trim: true,
-    set: setName,
-  },
+    name: {
+        type: String,
+        required: true,
+        trim: true,
+        set: setName,
+    },
 
-  age: {
-    type: Number,
-    min: 0,
-    required: true,
-  },
+    age: {
+        type: Number,
+        min: 0,
+        required: true,
+    },
 
-  characteristic: {
-    type: String,
-    required: true,
-    trim: true,
-    set: setName,
-  },
+    characteristic: {
+        type: String,
+        required: true,
+        trim: true,
+        set: setName,
+    },
 
-  owner: {
-    type: mongoose.Schema.ObjectId,
-    required: true,
-    ref: 'Account',
-  },
+    owner: {
+        type: mongoose.Schema.ObjectId,
+        required: true,
+        ref: 'Account',
+    },
 
-  createdDate: {
-    type: Date,
-    default: Date.now,
-  },
+    createdDate: {
+        type: Date,
+        default: Date.now,
+    },
 });
 
 DomoSchema.statics.toAPI = (doc) => ({
-  name: doc.name,
-  age: doc.age,
+    name: doc.name,
+    age: doc.age,
+    characteristic: doc.characteristic,
 });
 
 DomoSchema.statics.findByOwner = (ownerId, callback) => {
-  const search = {
-    // convert the string ownerId to an object id
-    owner: mongoose.Types.ObjectId(ownerId),
-  };
+    const search = {
+        // convert the string ownerId to an object id
+        owner: mongoose.Types.ObjectId(ownerId),
+    };
 
-  return DomoModel.find(search).select('name age').lean().exec(callback);
+    return DomoModel.find(search).select('name age characteristic').lean().exec(callback);
 };
 
 DomoModel = mongoose.model('Domo', DomoSchema);
