@@ -2,6 +2,7 @@
    displays it to the user. Will be hidden by other events that could
    end in an error.
 */
+
 const handleError = (message) => {
     document.getElementById('errorMessage').textContent = message;
     document.getElementById('domoMessage').classList.remove('hidden');
@@ -31,10 +32,12 @@ const sendPost = async(url, data) => {
     }
 };
 
+
 /* Entry point of our client code. Runs when window.onload fires.
    Sets up the event listeners for each form across the whole app.
 */
 const init = () => {
+
     const signupForm = document.getElementById('signupForm');
     const loginForm = document.getElementById('loginForm');
     const domoForm = document.getElementById('domoForm');
@@ -100,6 +103,7 @@ const init = () => {
        Otherwise, it will send the request to the server.
     */
     if (domoForm) {
+
         domoForm.addEventListener('submit', (e) => {
             e.preventDefault();
             domoMessage.classList.add('hidden');
