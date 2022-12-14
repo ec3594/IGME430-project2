@@ -54,7 +54,7 @@ nav:nth-child(1) {
     background-color: rgb(234, 175, 156);
 }
 
-.domoForm {
+.characterForm {
     border: 2px solid palevioletred;
     height: 35px;
     width: fit-content;
@@ -72,17 +72,17 @@ h2 {
     margin: 0;
 }
 
-.domoForm input {
+.characterForm input {
     margin-left: 5px;
     border-radius: 2px;
 }
 
-.domoForm label {
+.characterForm label {
     margin-left: 10px;
     font-size: 1.2em;
 }
 
-.makeDomoSubmit {
+.makeCharacterSubmit {
     transition: background-color 0.4s ease;
     display: inline;
     width: fit-content;
@@ -93,14 +93,14 @@ h2 {
     text-decoration: none;
 }
 
-.makeDomoSubmit:link,
-.makeDomoSubmit:visited,
-.makeDomoSubmit:hover,
-.makeDomoSubmit:active {
+.makeCharacterSubmit:link,
+.makeCharacterSubmit:visited,
+.makeCharacterSubmit:hover,
+.makeCharacterSubmit:active {
     color: white;
 }
 
-.makeDomoSubmit:hover {
+.makeCharacterSubmit:hover {
     transition: background-color 0.4s ease;
     background-color: #338acc;
 }
@@ -108,7 +108,7 @@ h2 {
 
 /* 
 
-#makeDomo {
+#makeCharacter {
     background-color: aliceblue;
     width: 100%;
 }
@@ -120,7 +120,7 @@ h2 {
     /* background-color: burlywood; */
     width: 350px;
     margin: 0 auto;
-    padding-top: 350px;
+    padding-top: 300px;
     font-size: 1.2em;
 }
 
@@ -143,11 +143,11 @@ h2 {
     margin: 0 auto;
     margin-top: 14px;
     font-size: 1.2em;
-    /* width: 100px; */
+    width: fit-content;
     background-color: rgb(223, 149, 124);
     border-radius: 5px;
     border-color: rgb(236, 145, 103);
-    padding: 3px 0px;
+    padding: 3px 10px;
     color: white;
     text-decoration: none;
 }
@@ -184,7 +184,7 @@ h2 {
     display: none;
 }
 
-#domoMessage {
+#characterMessage {
     top: 250px;
     width: 250px;
     height: 650px;
@@ -194,7 +194,7 @@ h2 {
     overflow: hidden;
 }
 
-#domoMessage h3 {
+#characterMessage h3 {
     width: 200px;
     position: absolute;
     top: 0px;
@@ -214,7 +214,7 @@ h2 {
     font-style: italic;
 }
 
-#domo {
+#character {
     z-index: 225;
     margin-top: -20px;
     margin-left: 135px;
@@ -264,7 +264,7 @@ h2 {
     overflow: hidden;
 }
 
-.domo {
+.character {
     /* width: 95%; */
     /* margin: 0 auto;
     border: 2px solid #55acee;
@@ -285,19 +285,19 @@ h2 {
     border-radius: 10px;
 }
 
-.domo:hover {
+.character:hover {
     /* transition: border-color 0.2s ease-out; */
     border-color: #bb925d;
     transition: background-color 0.3s ease-out;
     background-color: rgb(247 231 179);
 }
 
-#domos {
+#characters {
     height: auto;
     overflow: auto;
 }
 
-img.domoFace {
+img.characterFace {
     grid-area: avatar;
     /* margin-left: 10px;
     margin-right: 10px; */
@@ -306,7 +306,7 @@ img.domoFace {
     border-radius: 10px;
 }
 
-h3.emptyDomo {
+h3.emptyCharacter {
     width: 400px;
     font-size: 1.1em;
     margin: 0 auto;
@@ -314,7 +314,7 @@ h3.emptyDomo {
     margin-top: 18px;
 }
 
-h3.domoName {
+h3.characterName {
     grid-area: name;
     font-weight: bold;
     padding: 0;
@@ -324,7 +324,7 @@ h3.domoName {
     font-size: 1.5em;
 }
 
-h3.domoAge {
+h3.characterAge {
     grid-area: age;
     text-align: left;
     /* width: 100px; */
@@ -335,7 +335,7 @@ h3.domoAge {
     font-size: 1.1em;
 }
 
-h3.domoChar {
+h3.characterChar {
     grid-area: char;
     text-align: left;
     padding: 0;
@@ -358,11 +358,11 @@ h3.domoChar {
     background-color: rgb(245, 167, 157);
 }
 
-.domo:first-child {
+.character:first-child {
     margin-top: 2px;
 }
 
-.domo:last-child {
+.character:last-child {
     margin-bottom: 10px;
 }
 

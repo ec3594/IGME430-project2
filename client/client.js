@@ -5,7 +5,7 @@
 
 const handleError = (message) => {
     document.getElementById('errorMessage').textContent = message;
-    document.getElementById('domoMessage').classList.remove('hidden');
+    document.getElementById('characterMessage').classList.remove('hidden');
 };
 
 /* Sends post requests to the server using fetch. Will look for various
@@ -21,7 +21,7 @@ const sendPost = async(url, data) => {
     });
 
     const result = await response.json();
-    document.getElementById('domoMessage').classList.add('hidden');
+    document.getElementById('characterMessage').classList.add('hidden');
 
     if (result.redirect) {
         window.location = result.redirect;
@@ -40,8 +40,8 @@ const init = () => {
 
     const signupForm = document.getElementById('signupForm');
     const loginForm = document.getElementById('loginForm');
-    const domoForm = document.getElementById('domoForm');
-    const domoMessage = document.getElementById('domoMessage');
+    const characterForm = document.getElementById('characterForm');
+    const characterMessage = document.getElementById('characterMessage');
 
     /* If this page has the signupForm, add it's submit event listener.
        Event listener will grab the username, password, and password2
@@ -51,7 +51,7 @@ const init = () => {
     if (signupForm) {
         signupForm.addEventListener('submit', (e) => {
             e.preventDefault();
-            domoMessage.classList.add('hidden');
+            characterMessage.classList.add('hidden');
 
             const username = signupForm.querySelector('#user').value;
             const pass = signupForm.querySelector('#pass').value;
@@ -81,7 +81,7 @@ const init = () => {
     if (loginForm) {
         loginForm.addEventListener('submit', (e) => {
             e.preventDefault();
-            domoMessage.classList.add('hidden');
+            characterMessage.classList.add('hidden');
 
             const username = loginForm.querySelector('#user').value;
             const pass = loginForm.querySelector('#pass').value;
@@ -97,28 +97,28 @@ const init = () => {
         });
     }
 
-    /* If this page has the domoForm, add it's submit event listener.
-       Event listener will grab the domo name and the domo age from
+    /* If this page has the characterForm, add it's submit event listener.
+       Event listener will grab the character name and the character age from
        the form. It will throw an error if one or both are missing.
        Otherwise, it will send the request to the server.
     */
-    if (domoForm) {
+    if (characterForm) {
 
-        domoForm.addEventListener('submit', (e) => {
+        characterForm.addEventListener('submit', (e) => {
             e.preventDefault();
-            domoMessage.classList.add('hidden');
+            characterMessage.classList.add('hidden');
 
-            const name = domoForm.querySelector('#domoName').value;
-            const age = domoForm.querySelector('#domoAge').value;
-            const characteristic = domoForm.querySelector('#domoChar').value;
-            const _csrf = domoForm.querySelector('#_csrf').value;
+            const name = characterForm.querySelector('#characterName').value;
+            const age = characterForm.querySelector('#characterAge').value;
+            const characteristic = characterForm.querySelector('#characterChar').value;
+            const _csrf = characterForm.querySelector('#_csrf').value;
 
             if (!name || !age || !characteristic) {
                 handleError('All fields are required!');
                 return false;
             }
 
-            sendPost(domoForm.getAttribute('action'), { name, age, characteristic, _csrf });
+            sendPost(characterForm.getAttribute('action'), { name, age, characteristic, _csrf });
             return false;
         });
     }

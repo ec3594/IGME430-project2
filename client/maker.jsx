@@ -1,12 +1,12 @@
 const helper = require('./helper.js');
 
-const handleDomo = (e) => {
+const handleCharacter = (e) => {
     e.preventDefault();
     helper.hideError();
 
-    const name = e.target.querySelector('#domoName').value;
-    const age = e.target.querySelector('#domoAge').value;
-    const characteristic = e.target.querySelector('#domoChar').value;
+    const name = e.target.querySelector('#characterName').value;
+    const age = e.target.querySelector('#characterAge').value;
+    const characteristic = e.target.querySelector('#characterChar').value;
     const _csrf = e.target.querySelector('#_csrf').value;
 
     if (!name || !age || !characteristic) {
@@ -14,77 +14,77 @@ const handleDomo = (e) => {
         return false;
     }
 
-    helper.sendPost(e.target.action, { name, age, characteristic, _csrf }, loadDomosFromServer);
+    helper.sendPost(e.target.action, { name, age, characteristic, _csrf }, loadCharactersFromServer);
 
     return false;
 }
 
-const DomoForm = (props) => {
+const CharacterForm = (props) => {
     return (
-        <form id="domoForm"
-            name="domoForm"
-            onSubmit={handleDomo}
+        <form id="characterForm"
+            name="characterForm"
+            onSubmit={handleCharacter}
             action="/maker"
             method="POST"
-            className="domoForm"
+            className="characterForm"
         >
             <label htmlFor="name">Name: </label>
-            <input id="domoName" type="text" name="name" placeholder="Character Name" />
+            <input id="characterName" type="text" name="name" placeholder="Character Name" />
 
             <label htmlFor="age">Age: </label>
-            <input id="domoAge" type="number" min="0" name="age" />
+            <input id="characterAge" type="number" min="0" name="age" />
 
             <label htmlFor="characteristic">Characteristic: </label>
-            <input id="domoChar" type="text" name="characteristic" />
+            <input id="characterChar" type="text" name="characteristic" />
 
             <input id="_csrf" type="hidden" name="_csrf" value={props.csrf} />
-            <input className="makeDomoSubmit" type="submit" value="Create" />
+            <input className="makeCharacterSubmit" type="submit" value="Create" />
         </form>
     );
 };
 
-const DomoList = (props) => {
-    if (props.domos.length === 0) {
+const CharacterList = (props) => {
+    if (props.characters.length === 0) {
         return (
-            <div className="domoList">
-                <h3 className="emptyDomo">No Characters Yet!</h3>
+            <div className="characterList">
+                <h3 className="emptyCharacter">No Characters Yet!</h3>
             </div>
         )
     };
 
-    const domoNodes = props.domos.map(domo => {
+    const characterNodes = props.characters.map(character => {
         return (
-            <div key={domo._id} className="domo">
-                <img src="/assets/img/defaultAvatar.jpg" alt="domo face" className="domoFace" />
-                <h3 className="domoName"> Name: {domo.name} </h3>
-                <h3 className="domoAge"> Age: {domo.age} </h3>
-                <h3 className="domoChar"> Characteristic: {domo.characteristic} </h3>
+            <div key={character._id} className="character">
+                <img src="/assets/img/defaultAvatar.jpg" alt="character face" className="characterFace" />
+                <h3 className="characterName"> Name: {character.name} </h3>
+                <h3 className="characterAge"> Age: {character.age} </h3>
+                <h3 className="characterChar"> Characteristic: {character.characteristic} </h3>
                 <button id="delete-btn" type="button" onClick={(e) => {
-                    console.log("domo:");
-                    console.log(domo);
+                    console.log("character:");
+                    console.log(character);
                     e.target.parentElement.remove();
-                    let domoId = domo._id;
-                    console.log("domoId: " + domoId);
+                    let characterId = character._id;
+                    console.log("characterId: " + characterId);
                     const _csrf = document.getElementById("#_csrf").value;
-                    helper.sendPost("/delete", { domoId, _csrf });
+                    helper.sendPost("/delete", { characterId, _csrf });
                 }}>X</button>
             </div>
         );
     });
 
     return (
-        <div className="domoList">
-            {domoNodes}
+        <div className="characterList">
+            {characterNodes}
         </div>
     )
 }
 
-const loadDomosFromServer = async () => {
-    const response = await fetch('/getDomos');
+const loadCharactersFromServer = async () => {
+    const response = await fetch('/getCharacters');
     const data = await response.json();
     ReactDOM.render(
-        <DomoList domos={data.domos} />,
-        document.getElementById('domos')
+        <CharacterList characters={data.characters} />,
+        document.getElementById('characters')
     );
 }
 
@@ -158,16 +158,16 @@ const init = async () => {
     textbox.focus();
 
     ReactDOM.render(
-        <DomoForm csrf={data.csrfToken} />,
-        document.getElementById('makeDomo')
+        <CharacterForm csrf={data.csrfToken} />,
+        document.getElementById('makeCharacter')
     );
 
     ReactDOM.render(
-        <DomoList domos={[]} />,
-        document.getElementById('domos')
+        <CharacterList characters={[]} />,
+        document.getElementById('characters')
     );
 
-    loadDomosFromServer();
+    loadCharactersFromServer();
 }
 
 window.onload = init;
